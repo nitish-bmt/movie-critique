@@ -1,8 +1,8 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, InputBase, Button, Box } from '@mui/material';
 import { styled, alpha } from '@mui/material/styles';
-import { Link } from 'react-router-dom';
-import SearchIcon from '@mui/icons-material/Search';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -43,13 +43,19 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const Navbar: React.FC = () => {
+
+  const navigate = useNavigate();
+  const handleHomeClick = () => {
+    navigate('/');
+  };
+
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" style={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
+        <Typography variant="h6" onClick={handleHomeClick} style={{ flexGrow: 1, textDecoration: 'none', color: 'inherit' }}>
           Movie Critique
         </Typography>
-        <Search>
+        {/* <Search>
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
@@ -57,7 +63,7 @@ const Navbar: React.FC = () => {
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}
           />
-        </Search>
+        </Search> */}
         <Box marginLeft={2}>
           <Button color="inherit" href='/login'>Search</Button>
         </Box>        

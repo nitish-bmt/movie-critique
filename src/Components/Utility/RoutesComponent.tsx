@@ -24,8 +24,8 @@ const RoutesComponent: React.FC = ()=>{
     return(
         // <MainContext.Provider value={{ users, setUsers, admin, setAdmin }}>
         <>
-            <Navbar/>
             <BrowserRouter>
+            <Navbar/>
                 {/* <NavigationComponent /> */}
                 <Routes>
                     <Route path="/" element={<Catalogue />} />

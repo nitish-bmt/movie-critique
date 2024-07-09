@@ -18,7 +18,7 @@ export interface movieCommentsState {
 // initialiser
 const initialState: movieCommentsState = {
     movieComments: [{   
-        id: "HeraPheri",
+        id: "tt0848228",
         comments: [
             {
                 user: 'paper',

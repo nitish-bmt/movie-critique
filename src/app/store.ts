@@ -4,12 +4,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import movieCommentsReducer, { addComment } from '../features/movieCommentsSlice';
 import movieDataReducer, {addMovie} from '../features/movieDataSlice';
 import userDataReducer, {addUser} from '../features/userDataSlice';
+import activeUserReducer, {loginUser, logoutUser} from '../features/activeUserSlice';
 
 export const store = configureStore({
   reducer: {
     movieComments: movieCommentsReducer,
     movieData: movieDataReducer,
-    userData: userDataReducer
+    userData: userDataReducer,
+    activeUser: activeUserReducer
   },
 });
 

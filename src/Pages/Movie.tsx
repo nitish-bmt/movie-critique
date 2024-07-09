@@ -16,6 +16,7 @@ import { Card, CardContent, CardMedia, CardActionArea, CardActions, Paper } from
 import MovieCard from '../Components/Common/MovieCard';
 
 import movies from '../utils/movies.json';
+import { logoutUser } from '../features/activeUserSlice';
 
 type Inputs = {
     username: string;
@@ -32,8 +33,18 @@ const Movie: React.FC = () => {
 
     const movieCatalogue = useSelector((state:RootState) => state.movieData.movieData);
     const movieCmnts = useSelector((state: RootState) => (state.movieComments.movieComments));
+    const activeUser = useSelector((state: RootState) => (state.activeUser.activeUser));
 
     const currMovie: MovieData|null = movieCatalogue.find((movie)=>movie.imdbID == id)||null;
+    const currMovieComments: ({  id: string,
+                                comments: {
+                                    user: string,
+                                    rating: number,
+                                    comment: string
+                                }[]
+                            }|null)= movieCmnts.find((movie)=>movie.id == id)||null;
+
+    
     return (
         <>  
             {
@@ -76,10 +87,19 @@ const Movie: React.FC = () => {
                             </Typography>
                         </Grid>
                     </Grid>
+
+                {
+                currMovieComments&&currMovieComments.comments.map( (comment) => (<Typography>{comment.user}: {comment.rating}★ - {comment.comment}</Typography>))
+                }
                 </Paper>
+
+                {(activeUser!='')&&<div>
+                    <TextField fullWidth label="Add your Review" id="review" />
+                </div>
+                }
             </Container>
             }
-        </>
+        </> 
     );
 }
 
